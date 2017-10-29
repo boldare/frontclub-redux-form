@@ -43,3 +43,8 @@ button[type="submit"] {
   background: #285f8f;
   color: white;
 }
+
+.error {
+  color: red;
+  font-size: 10px;
+}
