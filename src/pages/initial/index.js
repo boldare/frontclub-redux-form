@@ -18,8 +18,8 @@ const InitialValues = (props) => {
   return (
     <div>
       <h2>Initial Values</h2>
+        {/*onClick={loadValues}*/}
       <button
-        onClick={loadValues}
         type="button"
       >
         Load initial values
@@ -65,6 +65,4 @@ const InitialValues = (props) => {
 
 export default reduxForm({
   form: 'initial-values',
-  validate,
-  warn,
 })(InitialValues);
