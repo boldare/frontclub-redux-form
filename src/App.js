@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, NavLink } from 'react-router-dom';
 import Home from './pages/home'
 import Validation from './pages/validation'
+import InitialValues from './pages/initial'
 
 import './App.css';
 
@@ -16,7 +17,7 @@ const App = () => (
       <NavLink to="/initial-values" className="link" activeClassName="is-active">Initial Values</NavLink>
     </nav>
     <Route exact path="/validation" component={Validation} />
-    {/* <Route path="/initial-values" component={InitialValues} /> */}
+    <Route path="/initial-values" component={InitialValues} />
     <Route exact path="/" component={Home} />
   </div>
 )

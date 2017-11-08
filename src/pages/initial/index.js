@@ -1,48 +1,15 @@
 import React from 'react';
-import { reduxForm, Field, SubmissionError } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
 
 import Input from '../../components/Input'
 
-const validate = values => {
-  let errors = {};
-
-  if (!values.firstName) {
-    errors.firstName = 'Please insert first name'
-  }
-
-  return errors;
-}
-
-const warn = values => {
-  let warnings = {};
-
-  if (values.firstName && 3 > values.firstName.length) {
-    warnings.firstName = 'Too short name'
-  }
-
-  return warnings;
-}
-
-const isGreaterThan10 = value => {
-  if (value && value < 10) {
-    return "Tooooo young"
-  }
-
-  return undefined;
-}
-
-const Validation = (props) => {
+const InitialValues = (props) => {
   const { handleSubmit, dirty, reset, submitting } = props;
 
   const sendDataToApi = (formData) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        console.log(formData);
-        if (formData.email && 'asd@asd.pl' === formData.email) {
-          reject (new SubmissionError({
-            email: 'That is fake'
-          }))
-        }
+        console.log(formData)
         resolve();
       }, 2000);
     })
@@ -50,7 +17,13 @@ const Validation = (props) => {
 
   return (
     <div>
-      <h2>Validation form</h2>
+      <h2>Initial Values</h2>
+      <button
+        onClick={loadValues}
+        type="button"
+      >
+        Load initial values
+      </button>
       <form onSubmit={handleSubmit(sendDataToApi)}>
         <Field
           name="firstName"
@@ -71,7 +44,6 @@ const Validation = (props) => {
           type="number"
           placeholder="Put your age here"
           label="Age"
-          validate={isGreaterThan10}
         />
         <button
           onClick={reset}
@@ -92,7 +64,7 @@ const Validation = (props) => {
 };
 
 export default reduxForm({
-  form: 'validation',
+  form: 'initial-values',
   validate,
   warn,
-})(Validation);
+})(InitialValues);
