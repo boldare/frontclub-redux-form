@@ -13,6 +13,16 @@ const validate = values => {
   return errors;
 }
 
+const warn = values => {
+  let warnings = {};
+
+  if (values.firstName && 3 > values.firstName.length) {
+    warnings.firstName = 'Too short name'
+  }
+
+  return warnings;
+}
+
 const isGreaterThan10 = value => {
   if (value && value < 10) {
     return "Tooooo young"
@@ -83,5 +93,6 @@ const Validation = (props) => {
 
 export default reduxForm({
   form: 'simple-form',
-  validate
+  validate,
+  warn,
 })(Validation);

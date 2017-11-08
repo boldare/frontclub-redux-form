@@ -25,6 +25,11 @@ const Input = ({
             <p className="error">{warning}</p>
           )
         }
+        {
+          touched && warning && (
+            <span className="error">{warning}</span>
+          )
+        }
       </div>
     </div>
   );
