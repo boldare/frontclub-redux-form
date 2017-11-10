@@ -18,13 +18,13 @@ const InitialValues = (props) => {
   return (
     <div>
       <h2>Initial Values</h2>
-        {/*onClick={loadValues}*/}
-      <button
-        type="button"
-      >
-        Load initial values
-      </button>
       <form onSubmit={handleSubmit(sendDataToApi)}>
+        {/*onClick={loadValues}*/}
+        <button
+          type="button"
+        >
+          Load initial values
+      </button>
         <Field
           name="firstName"
           component={Input}
