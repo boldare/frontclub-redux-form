@@ -1,7 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form';
 
+import { loadInitialAccount } from '../../modules/appActions'
+
 import Input from '../../components/Input'
+import InputCheckbox from '../../components/InputCheckbox'
 
 const InitialValues = (props) => {
   const { handleSubmit, dirty, reset, submitting } = props;
@@ -10,16 +14,37 @@ const InitialValues = (props) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         console.log(formData)
+        props.loadInitialAccount(formData)
         resolve();
-      }, 2000);
+      }, 1000);
     })
   };
+
+  // const upper = value => value && value.toUpperCase()
+
+  // const isAbove25 = (value, prevVal, allValues) => {
+  //   if (value > 24) {
+  //     props.change('isOld', true)
+
+  //     return value
+  //   }
+
+  //   props.change('isOld', false)
+  //   return value
+  // }
+
+  const data = {
+    firstName: 'Michal',
+    email: 'michal.ciesliczka@xsolve.pl',
+    age: 24,
+    isOld: false,
+  }
 
   return (
     <div>
       <h2>Initial Values</h2>
       <form onSubmit={handleSubmit(sendDataToApi)}>
-        {/*onClick={loadValues}*/}
+        {/* onClick={() => props.loadInitialAccount(data)} */}
         <button
           type="button"
         >
@@ -44,7 +69,21 @@ const InitialValues = (props) => {
           type="number"
           placeholder="Put your age here"
           label="Age"
+          />
+          {/* normalize={isAbove25} */}
+        <Field
+          name="isOld"
+          component={InputCheckbox}
+          type="checkbox"
+          label="Are you old?"
         />
+        <Field
+          name="shout"
+          component={Input}
+          type="text"
+          placeholder="Shout somthing"
+          />
+          {/* normalize={upper} */}
         <button
           onClick={reset}
           type="button"
@@ -63,6 +102,16 @@ const InitialValues = (props) => {
   );
 };
 
-export default reduxForm({
+const mapStateToProps = state => ({
+  initialValues: state.app.account,
+});
+
+const mapDispatchToProps = {
+  loadInitialAccount,
+};
+
+const InitialValuesForm = reduxForm({
   form: 'initial-values',
 })(InitialValues);
+
+export default  connect(mapStateToProps, mapDispatchToProps)(InitialValuesForm)

@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import {loadInitialAccount } from './appActions';
+import { loadInitialAccount } from './appActions';
 
 const initialState = {};
 
