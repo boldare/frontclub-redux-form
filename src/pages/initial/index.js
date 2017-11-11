@@ -20,18 +20,18 @@ const InitialValues = (props) => {
     })
   };
 
-  // const upper = value => value && value.toUpperCase()
+  const upper = value => value && value.toUpperCase()
 
-  // const isAbove25 = (value, prevVal, allValues) => {
-  //   if (value > 24) {
-  //     props.change('isOld', true)
+  const isAbove25 = (value, prevVal, allValues) => {
+    if (value > 24) {
+      props.change('isOld', true)
 
-  //     return value
-  //   }
+      return value
+    }
 
-  //   props.change('isOld', false)
-  //   return value
-  // }
+    props.change('isOld', false)
+    return value
+  }
 
   const data = {
     firstName: 'Michal',
@@ -44,9 +44,9 @@ const InitialValues = (props) => {
     <div>
       <h2>Initial Values</h2>
       <form onSubmit={handleSubmit(sendDataToApi)}>
-        {/* onClick={() => props.loadInitialAccount(data)} */}
         <button
           type="button"
+          onClick={() => props.loadInitialAccount(data)}
         >
           Load initial values
       </button>
@@ -69,8 +69,8 @@ const InitialValues = (props) => {
           type="number"
           placeholder="Put your age here"
           label="Age"
+          normalize={isAbove25}
           />
-          {/* normalize={isAbove25} */}
         <Field
           name="isOld"
           component={InputCheckbox}
@@ -82,8 +82,8 @@ const InitialValues = (props) => {
           component={Input}
           type="text"
           placeholder="Shout somthing"
+          normalize={upper}
           />
-          {/* normalize={upper} */}
         <button
           onClick={reset}
           type="button"
@@ -112,6 +112,7 @@ const mapDispatchToProps = {
 
 const InitialValuesForm = reduxForm({
   form: 'initial-values',
+  enableReinitialize: true,
 })(InitialValues);
 
 export default  connect(mapStateToProps, mapDispatchToProps)(InitialValuesForm)
