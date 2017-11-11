@@ -1,6 +1,9 @@
 import React from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 
+import Button from 'material-ui/Button';
+import Chip from 'material-ui/Chip';
+
 import Input from '../../components/Input'
 
 const validate = values => {
@@ -32,14 +35,14 @@ const isGreaterThan10 = value => {
 }
 
 const Validation = (props) => {
-  const { handleSubmit, dirty, reset, submitting } = props;
+  const { handleSubmit, dirty, reset, submitting, submitFailed, submitSucceeded } = props;
 
   const sendDataToApi = (formData) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         console.log(formData);
         if (formData.email && 'asd@asd.pl' === formData.email) {
-          reject (new SubmissionError({
+          reject(new SubmissionError({
             email: 'That is fake'
           }))
         }
@@ -52,40 +55,47 @@ const Validation = (props) => {
     <div>
       <h2>Validation form</h2>
       <form onSubmit={handleSubmit(sendDataToApi)}>
+        <div className="check-labels">
+          Submit success:
+          <Chip className={submitSucceeded ? 'active' : 'inactive'} label={`${submitSucceeded}`} />
+        </div>
+        <div className="check-labels">
+          Submit failure:
+          <Chip className={submitFailed ? 'active' : 'inactive'} label={`${submitFailed}`} />
+        </div>
         <Field
           name="firstName"
           component={Input}
-          placeholder="Put your first name"
           label="First Name"
         />
         <Field
           name="email"
           component={Input}
           type="email"
-          placeholder="Put your email here"
           label="Email"
         />
         <Field
           name="age"
           component={Input}
           type="number"
-          placeholder="Put your age here"
           label="Age"
           validate={isGreaterThan10}
         />
-        <button
+        <Button
           onClick={reset}
           type="button"
           disabled={!dirty || submitting}
         >
           Reset form
-        </button>
-        <button
+        </Button>
+        <Button
+          raised
+          color="primary"
           type="submit"
           disabled={!dirty || submitting}
         >
           Submit form
-        </button>
+        </Button>
       </form>
     </div>
   );

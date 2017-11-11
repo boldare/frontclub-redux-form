@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form';
+import Button from 'material-ui/Button';
 
 import { loadInitialAccount } from '../../modules/appActions'
 
@@ -44,33 +45,31 @@ const InitialValues = (props) => {
     <div>
       <h2>Initial Values</h2>
       <form onSubmit={handleSubmit(sendDataToApi)}>
-        <button
+        <Button
+          raised
           type="button"
           onClick={() => props.loadInitialAccount(data)}
         >
           Load initial values
-      </button>
+      </Button>
         <Field
           name="firstName"
           component={Input}
-          placeholder="Put your first name"
           label="First Name"
         />
         <Field
           name="email"
           component={Input}
           type="email"
-          placeholder="Put your email here"
           label="Email"
         />
         <Field
           name="age"
           component={Input}
           type="number"
-          placeholder="Put your age here"
           label="Age"
           normalize={isAbove25}
-          />
+        />
         <Field
           name="isOld"
           component={InputCheckbox}
@@ -81,22 +80,24 @@ const InitialValues = (props) => {
           name="shout"
           component={Input}
           type="text"
-          placeholder="Shout somthing"
+          label="Shout somthing"
           normalize={upper}
-          />
-        <button
+        />
+        <Button
           onClick={reset}
           type="button"
           disabled={!dirty || submitting}
         >
           Reset form
-        </button>
-        <button
+        </Button>
+        <Button
+          raised
+          color="primary"
           type="submit"
           disabled={!dirty || submitting}
         >
           Submit form
-        </button>
+        </Button>
       </form>
     </div>
   );
@@ -115,4 +116,4 @@ const InitialValuesForm = reduxForm({
   enableReinitialize: true,
 })(InitialValues);
 
-export default  connect(mapStateToProps, mapDispatchToProps)(InitialValuesForm)
+export default connect(mapStateToProps, mapDispatchToProps)(InitialValuesForm)

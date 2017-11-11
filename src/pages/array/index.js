@@ -1,6 +1,8 @@
 import React from 'react'
 import { reduxForm, Field, FieldArray } from 'redux-form';
 
+import Button from 'material-ui/Button';
+
 import Input from '../../components/Input';
 
 const sendDataToApi = (formData) => {
@@ -15,25 +17,34 @@ const sendDataToApi = (formData) => {
 const renderEmployees = ({ fields }) => (
   <ul>
     <li>
-      <button type="button" onClick={() => fields.push({})}>
+      <Button
+        type="button"
+        raised
+        className="add-button"
+        onClick={() => fields.push({})}
+        >
         Add employee
-      </button>
+      </Button>
       {
         fields.map((employee, index) => (
-          <div key={index}>
-            <button type="button" onClick={() => fields.remove(index)}>
-              Remove employee
-            </button>
+          <div key={index} className="employee">
+            <Button
+              type="button"
+              onClick={() => fields.remove(index)}
+              color="accent"
+              fab
+              className="remove-button"
+            >
+              X
+            </Button>
             <Field
               name={`${employee}.firstName`}
               component={Input}
-              placeholder="Put your first name"
               label="First Name"
             />
             <Field
               name={`${employee}.lastName`}
               component={Input}
-              placeholder="Put your last name"
               label="Last Name"
             />
           </div>
@@ -54,26 +65,27 @@ const ArrayForm = (props) => {
         <Field
           name="companyName"
           component={Input}
-          placeholder="Put your company name"
           label="Company name"
         />
         <FieldArray
           name="employees"
           component={renderEmployees}
         />
-        <button
+        <Button
           onClick={reset}
           type="button"
           disabled={!dirty || submitting}
         >
           Reset form
-        </button>
-        <button
+        </Button>
+        <Button
+          raised
+          color="primary"
           type="submit"
           disabled={!dirty || submitting}
         >
           Submit form
-        </button>
+        </Button>
       </form>
     </div>
   )

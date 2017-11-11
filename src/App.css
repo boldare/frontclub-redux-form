@@ -35,6 +35,7 @@ form {
   width: 600px;
   padding-bottom: 50px;
   margin: auto;
+  text-align: left;
 }
 
 .input-wrapper {
@@ -53,24 +54,41 @@ input {
   outline: 0;
 }
 
-button {
-  width: 200px;
-  margin: 5px 0;
-  display: block;
-  border: 1px solid black;
-  background: transparent;
-  border-radius: 5px;
-  padding: 10px;
-  text-transform: uppercase;
+.check-labels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-button[type="submit"] {
-  background: #285f8f;
-  color: white;
+.check-labels .active {
+  background-color: #1ce61c;
 }
 
-.error {
-  color: red;
-  font-size: 14px;
-  text-align: start;
+.check-labels .inactive {
+  background-color: #f81111;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+.add-button {
+  margin: auto;
+  display: block !important;
+}
+
+.employee {
+  position: relative;
+  padding-top: 10px;
+}
+
+.remove-button {
+  position: absolute !important;
+  width: 20px !important;
+  height: 20px !important;
+  min-height: 20px !important;
+  right: 0;
 }
