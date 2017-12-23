@@ -11,8 +11,8 @@ import Input from '../../components/Input'
 const validate = values => {
   let errors = {};
 
-  if (!values.firstName) {
-    errors.firstName = 'Please insert first name'
+  if (!values.myName) {
+    errors.myName = 'You better insert my name'
   }
 
   return errors;
@@ -21,8 +21,8 @@ const validate = values => {
 const warn = values => {
   let warnings = {};
 
-  if (values.firstName && 3 > values.firstName.length) {
-    warnings.firstName = 'Too short name'
+  if (values.myName && 3 > values.myName.length) {
+    warnings.myName = 'I can afford longer name'
   }
 
   return warnings;
@@ -40,12 +40,16 @@ const Validation = (props) => {
   const { handleSubmit, dirty, reset, submitting, submitFailed, submitSucceeded } = props;
 
   const saveAndHandleServerValidation = (formData) => {
+    console.log('Say my name!')
     return new Promise((resolve, reject) => {
       sendDataToApi(formData)
         .then((res) => {
+          console.log(formData.myName)
+          console.log('You are god damn right!')
           resolve();
         }, (err) => {
-          console.log(err, 'buhuuhuu');
+          console.log(formData.myName)
+          console.log('Pif Paf');
           reject();
         });
     })
@@ -64,9 +68,9 @@ const Validation = (props) => {
           <Chip className={submitFailed ? 'active' : 'inactive'} label={`${submitFailed}`} />
         </div>
         <Field
-          name="firstName"
+          name="myName"
           component={Input}
-          label="First Name"
+          label="Say my name"
         />
         <Field
           name="email"

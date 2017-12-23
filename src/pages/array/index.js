@@ -6,7 +6,7 @@ import Button from 'material-ui/Button';
 import Input from '../../components/Input';
 import { sendDataToApi } from '../../utils/api';
 
-const renderEmployees = ({ fields }) => (
+const renderGoodStuff = ({ fields }) => (
   <ul>
     <li>
       <Button
@@ -15,11 +15,11 @@ const renderEmployees = ({ fields }) => (
         className="add-button"
         onClick={() => fields.push({})}
         >
-        Add employee
+        Add good stuff
       </Button>
       {
-        fields.map((employee, index) => (
-          <div key={index} className="employee">
+        fields.map((goodStuff, index) => (
+          <div key={index} className="good-suff">
             <Button
               type="button"
               onClick={() => fields.remove(index)}
@@ -30,14 +30,15 @@ const renderEmployees = ({ fields }) => (
               X
             </Button>
             <Field
-              name={`${employee}.firstName`}
+              name={`${goodStuff}.name`}
               component={Input}
-              label="First Name"
+              label="Stuff name"
             />
             <Field
-              name={`${employee}.lastName`}
+              name={`${goodStuff}.amount`}
               component={Input}
-              label="Last Name"
+              label="Amount"
+              type="number"
             />
           </div>
         ))
@@ -46,29 +47,28 @@ const renderEmployees = ({ fields }) => (
   </ul>
 )
 
-
 const ArrayForm = (props) => {
   const { handleSubmit, dirty, submitting, reset } = props;
 
   return (
     <div>
-      <h2>Array form</h2>
+      <h2>Bro's order</h2>
       <form onSubmit={handleSubmit(sendDataToApi)}>
         <Field
-          name="companyName"
+          name="name"
           component={Input}
-          label="Company name"
+          label="Bro's name"
         />
         <FieldArray
-          name="employees"
-          component={renderEmployees}
+          name="goodStuff"
+          component={renderGoodStuff}
         />
         <Button
           onClick={reset}
           type="button"
           disabled={!dirty || submitting}
         >
-          Reset form
+          Ain't nobody got time for that
         </Button>
         <Button
           raised
@@ -76,7 +76,7 @@ const ArrayForm = (props) => {
           type="submit"
           disabled={!dirty || submitting}
         >
-          Submit form
+          Pack that stuff
         </Button>
       </form>
     </div>

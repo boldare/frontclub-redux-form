@@ -46,7 +46,7 @@ const InitialValues = (props) => {
           type="button"
           onClick={() => props.initialize({ ...data })}
         >
-          Load initial values
+          Jesse! Tell me more!
       </Button>
         <Field
           name="firstName"
