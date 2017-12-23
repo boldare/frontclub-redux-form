@@ -16,29 +16,29 @@ const App = () => (
       <h1 className="App-title">Redux Form - Front Club</h1>
     </header>
     <nav>
-      <Button>
-        <NavLink exact to="/" activeClassName="is-active">
+      <NavLink exact to="/" className="link" activeClassName="is-active">
+        <Button>
           Home
-        </NavLink>
-      </Button>
-      <Button>
-        <NavLink to="/validation" activeClassName="is-active">
+        </Button>
+      </NavLink>
+      <NavLink to="/validation" className="link" activeClassName="is-active">
+        <Button>
           Validation
-        </NavLink>
-      </Button>
-      <Button>
-        <NavLink to="/initial-values" activeClassName="is-active">
+        </Button>
+      </NavLink>
+      <NavLink to="/initial-values" className="link" activeClassName="is-active">
+        <Button>
           Initial Values
-        </NavLink>
-      </Button>
-      <Button>
-        <NavLink to="/array" activeClassName="is-active">
+        </Button>
+      </NavLink>
+      <NavLink to="/array" className="link" activeClassName="is-active">
+        <Button>
           Array form
-        </NavLink>
-      </Button>
+        </Button>
+      </NavLink>
     </nav>
 
-    <Route exact path="/validation" component={Validation} />
+    <Route path="/validation" component={Validation} />
     <Route path="/initial-values" component={InitialValues} />
     <Route path="/array" component={ArrayForm} />
     <Route exact path="/" component={Home} />

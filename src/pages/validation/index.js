@@ -4,6 +4,8 @@ import { reduxForm, Field, SubmissionError } from 'redux-form';
 import Button from 'material-ui/Button';
 import Chip from 'material-ui/Chip';
 
+import { sendDataToApi } from '../../utils/api';
+
 import Input from '../../components/Input'
 
 const validate = values => {
@@ -37,24 +39,22 @@ const isGreaterThan10 = value => {
 const Validation = (props) => {
   const { handleSubmit, dirty, reset, submitting, submitFailed, submitSucceeded } = props;
 
-  const sendDataToApi = (formData) => {
+  const saveAndHandleServerValidation = (formData) => {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        console.log(formData);
-        if (formData.email && 'asd@asd.pl' === formData.email) {
-          reject(new SubmissionError({
-            email: 'That is fake'
-          }))
-        }
-        resolve();
-      }, 2000);
+      sendDataToApi(formData)
+        .then((res) => {
+          resolve();
+        }, (err) => {
+          console.log(err, 'buhuuhuu');
+          reject();
+        });
     })
   };
 
   return (
     <div>
       <h2>Validation form</h2>
-      <form onSubmit={handleSubmit(sendDataToApi)}>
+      <form onSubmit={handleSubmit(saveAndHandleServerValidation)}>
         <div className="check-labels">
           Submit success:
           <Chip className={submitSucceeded ? 'active' : 'inactive'} label={`${submitSucceeded}`} />

@@ -17,15 +17,20 @@ nav {
 }
 
 .link {
-  font-size: 1.2em;
-  padding: 10px 20px;
   display: inline-block;
 }
 
-.link.is-active {
+.link,
+.link span {
+  color: #333;
+}
+
+.is-active {
   background: #333;
+}
+
+.is-active span {
   color: white;
-  border-radius: 10px;
 }
 
 form {

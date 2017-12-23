@@ -4,15 +4,7 @@ import { reduxForm, Field, FieldArray } from 'redux-form';
 import Button from 'material-ui/Button';
 
 import Input from '../../components/Input';
-
-const sendDataToApi = (formData) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      console.log(formData);
-      resolve();
-    }, 2000);
-  })
-};
+import { sendDataToApi } from '../../utils/api';
 
 const renderEmployees = ({ fields }) => (
   <ul>

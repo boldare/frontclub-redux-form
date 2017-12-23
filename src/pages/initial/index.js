@@ -1,9 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux'
 import { reduxForm, Field } from 'redux-form';
 import Button from 'material-ui/Button';
 
-import { loadInitialAccount } from '../../modules/appActions'
+import { sendDataToApi } from '../../utils/api';
 
 import Input from '../../components/Input'
 import InputCheckbox from '../../components/InputCheckbox'
@@ -11,14 +10,11 @@ import InputCheckbox from '../../components/InputCheckbox'
 const InitialValues = (props) => {
   const { handleSubmit, dirty, reset, submitting } = props;
 
-  const sendDataToApi = (formData) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        console.log(formData)
-        props.loadInitialAccount(formData)
-        resolve();
-      }, 1000);
-    })
+  const saveAndSendData = (formData) => {
+    sendDataToApi(formData)
+      .then(() => {
+        props.initialize(formData);
+      });
   };
 
   const upper = value => value && value.toUpperCase()
@@ -44,11 +40,11 @@ const InitialValues = (props) => {
   return (
     <div>
       <h2>Initial Values</h2>
-      <form onSubmit={handleSubmit(sendDataToApi)}>
+      <form onSubmit={handleSubmit(saveAndSendData)}>
         <Button
           raised
           type="button"
-          onClick={() => props.loadInitialAccount(data)}
+          onClick={() => props.initialize({ ...data })}
         >
           Load initial values
       </Button>
@@ -103,17 +99,6 @@ const InitialValues = (props) => {
   );
 };
 
-const mapStateToProps = state => ({
-  initialValues: state.app.account,
-});
-
-const mapDispatchToProps = {
-  loadInitialAccount,
-};
-
-const InitialValuesForm = reduxForm({
+export default reduxForm({
   form: 'initial-values',
-  enableReinitialize: true,
 })(InitialValues);
-
-export default connect(mapStateToProps, mapDispatchToProps)(InitialValuesForm)

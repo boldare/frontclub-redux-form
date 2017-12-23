@@ -2,17 +2,10 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import Button from 'material-ui/Button';
 
+import { sendDataToApi } from '../../utils/api';
+
 const Home = (props) => {
   const { handleSubmit, dirty, reset, submitting } = props;
-
-  const sendDataToApi = (formData) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        console.log(formData);
-        reject();
-      }, 2000);
-    })
-  };
 
   return (
     <div>
