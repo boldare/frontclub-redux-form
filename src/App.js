@@ -12,8 +12,12 @@ import './App.css';
 const App = () => (
   <div className="App">
     <header className="App-header">
-      <img src="http://frontclub.pl/1226c02f1436272e162b73cf3f64dd94.svg" alt="FC logo" />
-      <h1 className="App-title">Redux Form - Front Club</h1>
+      <video id="smoke" autoPlay loop>
+        <source src="http://www.elementfinder.info/vid/smoke.mp4" type="video/mp4" />
+        <source src="http://www.elementfinder.info/vid/smoke.webm" type="video/webm" />
+        <source src="http://www.elementfinder.info/vid/smoke.ogv" type="video/ogg" />
+      </video>
+      <h1 className="App-title">redUx Form<br />Front Club</h1>
     </header>
     <nav>
       <NavLink exact to="/" className="link" activeClassName="is-active">

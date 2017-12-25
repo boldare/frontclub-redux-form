@@ -4,9 +4,9 @@ export const sendDataToApi = (formData) => {
       console.log(formData);
 
       // For validation page
-      if (formData.myName && 'Heisenberg' !== formData.myName) {
+      if (formData.myName && 'Hank' === formData.myName) {
         reject({
-          email: 'This is fake'
+          myName: 'You don\'t wan to get into that'
         })
       }
 

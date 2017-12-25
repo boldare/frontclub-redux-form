@@ -6,6 +6,7 @@ import { sendDataToApi } from '../../utils/api';
 
 import Input from '../../components/Input'
 import InputCheckbox from '../../components/InputCheckbox'
+import FormButtons from '../../components/FormButtons'
 
 const InitialValues = (props) => {
   const { handleSubmit, dirty, reset, submitting } = props;
@@ -32,32 +33,24 @@ const InitialValues = (props) => {
 
   const data = {
     firstName: 'Michal',
-    email: 'michal.ciesliczka@xsolve.pl',
     age: 24,
-    isOld: false,
   }
 
   return (
     <div>
-      <h2>Initial Values</h2>
+      <h2>Bro's order</h2>
       <form onSubmit={handleSubmit(saveAndSendData)}>
         <Button
           raised
           type="button"
           onClick={() => props.initialize({ ...data })}
         >
-          Jesse! Tell me more!
+          Jesse! Tell me more about that guy!
       </Button>
         <Field
           name="firstName"
           component={Input}
           label="First Name"
-        />
-        <Field
-          name="email"
-          component={Input}
-          type="email"
-          label="Email"
         />
         <Field
           name="age"
@@ -79,21 +72,7 @@ const InitialValues = (props) => {
           label="Shout somthing"
           normalize={upper}
         />
-        <Button
-          onClick={reset}
-          type="button"
-          disabled={!dirty || submitting}
-        >
-          Reset form
-        </Button>
-        <Button
-          raised
-          color="primary"
-          type="submit"
-          disabled={!dirty || submitting}
-        >
-          Submit form
-        </Button>
+        <FormButtons submitting={submitting} dirty={dirty} reset={reset} />
       </form>
     </div>
   );

@@ -1,12 +1,12 @@
 import React from 'react';
 import { reduxForm, Field, SubmissionError } from 'redux-form';
 
-import Button from 'material-ui/Button';
 import Chip from 'material-ui/Chip';
 
 import { sendDataToApi } from '../../utils/api';
 
 import Input from '../../components/Input'
+import FormButtons from '../../components/FormButtons'
 
 const validate = values => {
   let errors = {};
@@ -21,8 +21,8 @@ const validate = values => {
 const warn = values => {
   let warnings = {};
 
-  if (values.myName && 3 > values.myName.length) {
-    warnings.myName = 'I can afford longer name'
+  if (values.myName && "Heisenberg" === values.myName) {
+    warnings.myName = 'You are god damn right!'
   }
 
   return warnings;
@@ -30,7 +30,7 @@ const warn = values => {
 
 const isGreaterThan10 = value => {
   if (value && value < 10) {
-    return "Tooooo young"
+    return "Way tooo young to smoke crystals. Get out of here!"
   }
 
   return undefined;
@@ -40,32 +40,41 @@ const Validation = (props) => {
   const { handleSubmit, dirty, reset, submitting, submitFailed, submitSucceeded } = props;
 
   const saveAndHandleServerValidation = (formData) => {
-    console.log('Say my name!')
     return new Promise((resolve, reject) => {
       sendDataToApi(formData)
         .then((res) => {
-          console.log(formData.myName)
-          console.log('You are god damn right!')
           resolve();
         }, (err) => {
-          console.log(formData.myName)
-          console.log('Pif Paf');
-          reject();
+          reject(new SubmissionError(err));
         });
     })
   };
 
   return (
     <div>
-      <h2>Validation form</h2>
+      <h2>One time order</h2>
       <form onSubmit={handleSubmit(saveAndHandleServerValidation)}>
         <div className="check-labels">
           Submit success:
-          <Chip className={submitSucceeded ? 'active' : 'inactive'} label={`${submitSucceeded}`} />
+          <Chip
+            className={
+              submitSucceeded
+              ? 'active'
+              : 'inactive'
+            }
+            label={`${submitSucceeded}`}
+          />
         </div>
         <div className="check-labels">
           Submit failure:
-          <Chip className={submitFailed ? 'active' : 'inactive'} label={`${submitFailed}`} />
+          <Chip
+            className={
+              submitFailed
+              ? 'active'
+              : 'inactive'
+            }
+            label={`${submitFailed}`}
+          />
         </div>
         <Field
           name="myName"
@@ -73,10 +82,9 @@ const Validation = (props) => {
           label="Say my name"
         />
         <Field
-          name="email"
+          name="stuff"
           component={Input}
-          type="email"
-          label="Email"
+          label="What stuff do you need?"
         />
         <Field
           name="age"
@@ -85,21 +93,7 @@ const Validation = (props) => {
           label="Age"
           validate={isGreaterThan10}
         />
-        <Button
-          onClick={reset}
-          type="button"
-          disabled={!dirty || submitting}
-        >
-          Reset form
-        </Button>
-        <Button
-          raised
-          color="primary"
-          type="submit"
-          disabled={!dirty || submitting}
-        >
-          Submit form
-        </Button>
+        <FormButtons submitting={submitting} dirty={dirty} reset={reset} />
       </form>
     </div>
   );

@@ -4,6 +4,8 @@ import { reduxForm, Field, FieldArray } from 'redux-form';
 import Button from 'material-ui/Button';
 
 import Input from '../../components/Input';
+import FormButtons from '../../components/FormButtons';
+
 import { sendDataToApi } from '../../utils/api';
 
 const renderGoodStuff = ({ fields }) => (
@@ -52,7 +54,7 @@ const ArrayForm = (props) => {
 
   return (
     <div>
-      <h2>Bro's order</h2>
+      <h2>Wholesale order</h2>
       <form onSubmit={handleSubmit(sendDataToApi)}>
         <Field
           name="name"
@@ -63,21 +65,7 @@ const ArrayForm = (props) => {
           name="goodStuff"
           component={renderGoodStuff}
         />
-        <Button
-          onClick={reset}
-          type="button"
-          disabled={!dirty || submitting}
-        >
-          Ain't nobody got time for that
-        </Button>
-        <Button
-          raised
-          color="primary"
-          type="submit"
-          disabled={!dirty || submitting}
-        >
-          Pack that stuff
-        </Button>
+        <FormButtons submitting={submitting} dirty={dirty} reset={reset} />
       </form>
     </div>
   )

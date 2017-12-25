@@ -1,15 +1,29 @@
+@font-face {
+  font-family: BreakingBad;
+  src: url(font.otf);
+}
+
 .App {
   text-align: center;
 }
 
 .App-header {
-  background-color: #222;
-  padding: 20px;
+  position: relative;
+  background-color: black;
   color: white;
 }
 
+#smoke {
+  height: 300px;
+}
+
 .App-title {
-  font-size: 1.5em;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  font-family: BreakingBad;
+  font-size: 4em;
 }
 
 nav {
@@ -22,15 +36,34 @@ nav {
 
 .link,
 .link span {
-  color: #333;
+  color: #3fb573;
 }
 
 .is-active {
-  background: #333;
+  background: #3fb573;
 }
 
 .is-active span {
   color: white;
+}
+
+.is-active span:after {
+  content: '';
+  width: 1em;
+  height: 0;
+  border-top: .5em solid #3fb573;
+  border-right: .5em solid transparent;
+  border-left: .5em solid transparent;
+  margin-left: -0.5em;
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  box-sizing: border-box;
+}
+
+.MuiButton-raisedPrimary-10 {
+  background-color: #3fb573 !important;
 }
 
 form {
@@ -64,14 +97,22 @@ input {
   flex-direction: column;
   align-items: center;
   margin-bottom: 10px;
+  padding: 2px;
+  border-radius: 10px;
 }
 
 .check-labels .active {
-  background-color: #1ce61c;
+  color: white;
+  background-color: #3fb573;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .check-labels .inactive {
+  color: white;
   background-color: #f81111;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 ul {
