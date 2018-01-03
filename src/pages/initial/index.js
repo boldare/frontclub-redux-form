@@ -16,37 +16,41 @@ const USER_DATA = {
 const InitialValues = (props) => {
   const { handleSubmit, dirty, reset, submitting } = props;
 
-  const saveAndSendData = (formData) => {
-    sendDataToApi(formData)
-      .then(() => {
-        props.initialize(formData);
-      });
-  };
+  // #region INITIAL VALUES
+  // const saveAndSendData = (formData) => {
+  //   sendDataToApi(formData)
+  //     .then(() => {
+  //       props.initialize(formData);
+  //     });
+  // };
+  // #endregion
 
-  const upper = value => value && value.toUpperCase()
+  // #region NORMALIZATION
+  // const upper = value => value && value.toUpperCase()
 
-  const isAbove25 = (value, prevVal, allValues) => {
-    if (value > 24) {
-      props.change('isOld', true)
+  // const isAbove25 = (value, prevVal, allValues) => {
+  //   if (value > 24) {
+  //     props.change('isOld', true)
 
-      return value
-    }
+  //     return value
+  //   }
 
-    props.change('isOld', false)
-    return value
-  }
+  //   props.change('isOld', false)
+  //   return value
+  // }
+  // #endregion
 
   return (
     <div>
       <h2>Bro's order</h2>
-      <form onSubmit={handleSubmit(saveAndSendData)}>
-        <Button
+      <form onSubmit={handleSubmit(sendDataToApi)}>
+        {/*<Button
           raised
           type="button"
           onClick={() => props.initialize({ ...USER_DATA })}
         >
           Jesse! Tell me more about that guy!
-      </Button>
+        </Button>*/}
         <Field
           name="firstName"
           component={Input}
@@ -57,7 +61,6 @@ const InitialValues = (props) => {
           component={Input}
           type="number"
           label="Age"
-          normalize={isAbove25}
         />
         <Field
           name="isOld"
@@ -65,13 +68,14 @@ const InitialValues = (props) => {
           type="checkbox"
           label="Are you old?"
         />
-        <Field
+        {/*NORMALIZATION*/}
+        {/*<Field
           name="shout"
           component={Input}
           type="text"
           label="Shout somthing"
           normalize={upper}
-        />
+        />*/}
         <FormButtons submitting={submitting} dirty={dirty} reset={reset} />
       </form>
     </div>
