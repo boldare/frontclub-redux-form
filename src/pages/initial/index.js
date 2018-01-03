@@ -8,6 +8,11 @@ import Input from '../../components/Input'
 import InputCheckbox from '../../components/InputCheckbox'
 import FormButtons from '../../components/FormButtons'
 
+const USER_DATA = {
+  firstName: 'Michal',
+  age: 24,
+}
+
 const InitialValues = (props) => {
   const { handleSubmit, dirty, reset, submitting } = props;
 
@@ -31,11 +36,6 @@ const InitialValues = (props) => {
     return value
   }
 
-  const data = {
-    firstName: 'Michal',
-    age: 24,
-  }
-
   return (
     <div>
       <h2>Bro's order</h2>
@@ -43,7 +43,7 @@ const InitialValues = (props) => {
         <Button
           raised
           type="button"
-          onClick={() => props.initialize({ ...data })}
+          onClick={() => props.initialize({ ...USER_DATA })}
         >
           Jesse! Tell me more about that guy!
       </Button>

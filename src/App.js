@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Switch, Route, NavLink } from 'react-router-dom';
 import Button from 'material-ui/Button';
 
 import Home from './pages/home'
@@ -42,10 +42,13 @@ const App = () => (
       </NavLink>
     </nav>
 
-    <Route path="/validation" component={Validation} />
-    <Route path="/initial-values" component={InitialValues} />
-    <Route path="/array" component={ArrayForm} />
-    <Route exact path="/" component={Home} />
+    <Switch>
+      <Route path="/validation" component={Validation} />
+      <Route path="/initial-values" component={InitialValues} />
+      <Route path="/array" component={ArrayForm} />
+      <Route exact path="/" component={Home} />
+      <Route component={Home} />
+    </Switch>
   </div>
 )
 
