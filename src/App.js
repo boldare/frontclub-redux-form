@@ -4,8 +4,6 @@ import Button from 'material-ui/Button';
 
 import Home from './pages/home'
 import Validation from './pages/validation'
-import InitialValues from './pages/initial'
-import ArrayForm from './pages/array'
 
 import './App.css';
 
@@ -30,22 +28,10 @@ const App = () => (
           Validation
         </Button>
       </NavLink>
-      <NavLink to="/initial-values" className="link" activeClassName="is-active">
-        <Button>
-          Initial Values
-        </Button>
-      </NavLink>
-      <NavLink to="/array" className="link" activeClassName="is-active">
-        <Button>
-          Array form
-        </Button>
-      </NavLink>
     </nav>
 
     <Switch>
       <Route path="/validation" component={Validation} />
-      <Route path="/initial-values" component={InitialValues} />
-      <Route path="/array" component={ArrayForm} />
       <Route exact path="/" component={Home} />
       <Route component={Home} />
     </Switch>
