@@ -5,7 +5,7 @@ import Button from 'material-ui/Button';
 import { sendDataToApi } from '../../utils/api';
 
 const Home = (props) => {
-  const { handleSubmit, dirty, reset, submitting } = props;
+  const { handleSubmit } = props;
 
   return (
     <div>
@@ -16,18 +16,17 @@ const Home = (props) => {
           component="input"
           placeholder="Put your name here"
         />
-        <Button
+        {/* <Button
           onClick={reset}
           type="button"
           disabled={!dirty || submitting}
         >
           Reset form
-        </Button>
+        </Button> */}
         <Button
           raised
           color="primary"
           type="submit"
-          disabled={!dirty || submitting}
         >
           Submit form
         </Button>
