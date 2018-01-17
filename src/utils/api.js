@@ -6,14 +6,14 @@ export const sendDataToApi = (formData) => {
       // For validation page
       if (formData.myName && 'Hank' === formData.myName) {
         reject({
-          myName: 'You don\'t wan to get into that'
+          myName: 'You don\'t want to get into that'
         })
       }
 
       // ... do stuff;
 
       resolve();
-    }, 2000);
+    }, 1000);
   })
 };
 

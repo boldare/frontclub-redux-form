@@ -8,52 +8,61 @@ import { sendDataToApi } from '../../utils/api';
 import Input from '../../components/Input'
 import FormButtons from '../../components/FormButtons'
 
-const validate = values => {
-  let errors = {};
+//#region walidate
+// const validate = values => {
+//   let errors = {};
 
-  if (!values.myName) {
-    errors.myName = 'You better insert my name'
-  }
+//   if (!values.myName) {
+//     errors.myName = 'You better insert my name'
+//   }
 
-  return errors;
-}
+//   return errors;
+// }
+//#endregion
 
-const warn = values => {
-  let warnings = {};
+//#region warn
+// const warn = values => {
+//   let warnings = {};
 
-  if (values.myName && "Heisenberg" === values.myName) {
-    warnings.myName = 'You are god damn right!'
-  }
+//   // INSERT NAME
+//   if (values.myName && "" === values.myName) {
+//     warnings.myName = 'You\'re goddamn right!'
+//   }
 
-  return warnings;
-}
+//   return warnings;
+// }
+//#endregion
 
-const isGreaterThan10 = value => {
-  if (value && value < 10) {
-    return "Way tooo young to smoke crystals. Get out of here!"
-  }
+//#region isGreater
+// const isGreaterThan10 = value => {
+//   if (value && value < 10) {
+//     return "Way tooo young to smoke crystals. Get out of here!"
+//   }
 
-  return undefined;
-}
+//   return undefined;
+// }
+//#endregion
 
 const Validation = (props) => {
   const { handleSubmit, dirty, reset, submitting, submitFailed, submitSucceeded } = props;
 
-  const saveAndHandleServerValidation = (formData) => {
-    return new Promise((resolve, reject) => {
-      sendDataToApi(formData)
-        .then((res) => {
-          resolve();
-        }, (err) => {
-          reject(new SubmissionError(err));
-        });
-    })
-  };
+  // #region handle server validation
+  // const saveAndHandleServerValidation = (formData) => {
+  //   return new Promise((resolve, reject) => {
+  //     sendDataToApi(formData)
+  //       .then((res) => {
+  //         resolve();
+  //       }, (err) => {
+  //         reject(new SubmissionError(err));
+  //       });
+  //   })
+  // };
+  // #endregion
 
   return (
     <div>
       <h2>One time order</h2>
-      <form onSubmit={handleSubmit(saveAndHandleServerValidation)}>
+      <form onSubmit={handleSubmit(sendDataToApi)}>
         <div className="check-labels">
           Submit success:
           <Chip
@@ -91,8 +100,7 @@ const Validation = (props) => {
           component={Input}
           type="number"
           label="Age"
-          validate={isGreaterThan10}
-        />
+          />
         <FormButtons submitting={submitting} dirty={dirty} reset={reset} />
       </form>
     </div>
@@ -101,6 +109,4 @@ const Validation = (props) => {
 
 export default reduxForm({
   form: 'validation',
-  validate,
-  warn,
 })(Validation);
