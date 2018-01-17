@@ -22,7 +22,7 @@ const warn = values => {
   let warnings = {};
 
   if (values.myName && "Heisenberg" === values.myName) {
-    warnings.myName = 'You are god damn right!'
+    warnings.myName = 'You\'re goddamn right!'
   }
 
   return warnings;
