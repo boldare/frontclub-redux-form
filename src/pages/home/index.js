@@ -16,13 +16,6 @@ const Home = (props) => {
           component="input"
           placeholder="Put your name here"
         />
-        {/* <Button
-          onClick={reset}
-          type="button"
-          disabled={!dirty || submitting}
-        >
-          Reset form
-        </Button> */}
         <Button
           raised
           color="primary"
