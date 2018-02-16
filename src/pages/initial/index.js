@@ -16,41 +16,10 @@ const USER_DATA = {
 const InitialValues = (props) => {
   const { handleSubmit, dirty, reset, submitting } = props;
 
-  // #region INITIAL VALUES
-  // const saveAndSendData = (formData) => {
-  //   sendDataToApi(formData)
-  //     .then(() => {
-  //       props.initialize(formData);
-  //     });
-  // };
-  // #endregion
-
-  // #region NORMALIZATION
-  // const upper = value => value && value.toUpperCase()
-
-  // const isAbove25 = (value, prevVal, allValues) => {
-  //   if (value > 24) {
-  //     props.change('isOld', true)
-
-  //     return value
-  //   }
-
-  //   props.change('isOld', false)
-  //   return value
-  // }
-  // #endregion
-
   return (
     <div>
       <h2>Bro's order</h2>
       <form onSubmit={handleSubmit(sendDataToApi)}>
-        {/*<Button
-          raised
-          type="button"
-          onClick={() => props.initialize({ ...USER_DATA })}
-        >
-          Jesse! Tell me more about that guy!
-        </Button>*/}
         <Field
           name="firstName"
           component={Input}
@@ -68,14 +37,6 @@ const InitialValues = (props) => {
           type="checkbox"
           label="Are you old?"
         />
-        {/*NORMALIZATION*/}
-        {/*<Field
-          name="shout"
-          component={Input}
-          type="text"
-          label="Shout somthing"
-          normalize={upper}
-        />*/}
         <FormButtons submitting={submitting} dirty={dirty} reset={reset} />
       </form>
     </div>
