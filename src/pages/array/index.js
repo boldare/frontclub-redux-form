@@ -8,6 +8,49 @@ import FormButtons from '../../components/FormButtons';
 
 import { sendDataToApi } from '../../utils/api';
 
+// region renderGoodStuff
+// const renderGoodStuff = ({ fields }) => (
+//   <ul>
+//     <li>
+//       <Button
+//         type="button"
+//         raised
+//         className="add-button"
+//         onClick={() => fields.push({})}
+//         >
+//         Add good stuff
+//       </Button>
+//       {
+//         fields.map((goodStuff, index) => (
+//           <div key={index} className="good-suff">
+//             <Button
+//               type="button"
+//               onClick={() => fields.remove(index)}
+//               color="accent"
+//               fab
+//               className="remove-button"
+//             >
+//               X
+//             </Button>
+//             <Field
+//               name={`${goodStuff}.name`}
+//               component={Input}
+//               label="Stuff name"
+//             />
+//             <Field
+//               name={`${goodStuff}.amount`}
+//               component={Input}
+//               label="Amount"
+//               type="number"
+//             />
+//           </div>
+//         ))
+//       }
+//     </li>
+//   </ul>
+// )
+// endregion renderGoodStuff
+
 const ArrayForm = (props) => {
   const { handleSubmit, dirty, submitting, reset } = props;
 
