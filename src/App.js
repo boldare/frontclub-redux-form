@@ -14,7 +14,7 @@ const App = () => (
         <source src="http://www.elementfinder.info/vid/smoke.webm" type="video/webm" />
         <source src="http://www.elementfinder.info/vid/smoke.ogv" type="video/ogg" />
       </video>
-      <h1 className="App-title">redUx Form<br />Front Club</h1>
+      <h1 className="App-title">redUx Form</h1>
     </header>
     <nav>
       <NavLink exact to="/" className="link" activeClassName="is-active">
